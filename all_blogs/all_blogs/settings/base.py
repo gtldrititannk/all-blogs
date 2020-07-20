@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # All-Blogs apps
     'users',
+    'blogs',
 
 
 ]

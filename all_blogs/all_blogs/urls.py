@@ -19,6 +19,7 @@ from django.urls import path, re_path, include
 from django.conf import settings
 from django.contrib.staticfiles import views
 
+
 from .views import IndexView, ContactView, PostView
 
 urlpatterns = [
@@ -32,6 +33,8 @@ urlpatterns = [
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('account/', include('allauth.urls')),
     path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
+    path('blogs/', include('blogs.urls')),
+
 ]
 
 if settings.DEBUG:
