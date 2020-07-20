@@ -13,23 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from dj_rest_auth.registration.views import VerifyEmailView
 from django.contrib import admin
-from django.urls import path, re_path,include
+from django.urls import path, re_path, include
 from django.conf import settings
 from django.contrib.staticfiles import views
 
-from .views import IndexView,ContactView,PostView
-
+from .views import IndexView, ContactView, PostView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',IndexView.as_view(),name='index'),
-#     path('contact',ContactView.as_view(),name='contact'),
-#     path('post', PostView.as_view(), name='post'),
-#     path('bloggers/', include('bloggers.urls')),
-#     path('accounts/', include('allauth.urls')),
- ]
-
+    path('', IndexView.as_view(), name='index'),
+    #     path('contact',ContactView.as_view(),name='contact'),
+    #     path('post', PostView.as_view(), name='post'),
+    #     path('bloggers/', include('bloggers.urls')),
+    #     path('accounts/', include('allauth.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('account/', include('allauth.urls')),
+    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
+]
 
 if settings.DEBUG:
     urlpatterns += [

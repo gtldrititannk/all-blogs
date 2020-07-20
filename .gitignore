@@ -3,11 +3,12 @@ __pycache__/
 *.py[cod]
 
 # Files related to editor
-.idea/
+.idea/*
 
 all_blogs/settings/local.py
 
 # Database
+
 all_blogs/db.sqlite3
 
 Pipfile.lock

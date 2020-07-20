@@ -38,11 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third part Apps
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     # All-Blogs apps
+    'users',
 
 
 ]
@@ -136,7 +141,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT,'static')
 #     os.path.join(PROJECT_ROOT, 'static'),
 # ]
 
-# AUTH_USER_MODEL = 'bloggers.Blogger'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 SITE_ID = 1
 
@@ -159,3 +164,18 @@ SITE_ID = 1
 # ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True  # To logout user after changing the password.
 # ACCOUNT_LOGOUT_REDIRECT_URl = '/'
 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
+
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
+}
